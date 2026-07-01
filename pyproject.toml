@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "MolTrust trust verification middleware for LangChain 1.x"
 readme = "README.md"
 requires-python = ">=3.10"
-license = "MIT"
+license = { text = "MIT" }
 authors = [{ name = "Lars Kersten Kroehl", email = "kersten.kroehl@cryptokri.ch" }]
 keywords = ["langchain", "moltrust", "agent", "trust", "middleware", "ai-agents", "guardrail"]
 classifiers = [

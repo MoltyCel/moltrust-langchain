@@ -8,6 +8,8 @@ follows [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Classic license metadata for PyPI compatibility: `license = { text = "MIT" }`
   emits `License: MIT` instead of `License-Expression: MIT`.
+- Suppress hatchling's `License-File` metadata generation via `license-files = []`
+  (PEP 639) — verified: built METADATA no longer carries a `License-File` entry.
 
 ## [0.1.0] — 2026-07-01
 

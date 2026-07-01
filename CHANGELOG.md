@@ -3,6 +3,12 @@
 All notable changes to `moltrust-langchain` are documented here. This project
 follows [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] — 2026-07-01
+
+### Fixed
+- Classic license metadata for PyPI compatibility: `license = { text = "MIT" }`
+  emits `License: MIT` instead of `License-Expression: MIT`.
+
 ## [0.1.0] — 2026-07-01
 
 Initial release. Skeleton + working code (not published to PyPI).

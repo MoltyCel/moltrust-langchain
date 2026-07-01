@@ -183,3 +183,24 @@ def test_middleware_wrap_tool_call_blocks_with_toolmessage():
     result = mw.wrap_tool_call(_Req(), handler)
     assert isinstance(result, ToolMessage) and result.status == "error"
     assert called["handler"] is False  # handler never invoked → blocked
+
+
+# -- branded User-Agent header (0.1.2) ------------------------------------
+
+@mock.patch("moltrust_langchain.client.requests.get")
+def test_client_sends_branded_user_agent_keyless(mget, monkeypatch):
+    monkeypatch.delenv("MOLTRUST_API_KEY", raising=False)
+    mget.return_value = FakeResponse(200, {"trust_score": 70, "withheld": False})
+    TrustClient().get_trust_score(DID)
+    from moltrust_langchain import __version__
+    assert mget.call_args.kwargs["headers"]["User-Agent"] == f"moltrust-langchain/{__version__}"
+
+
+@mock.patch("moltrust_langchain.client.requests.get")
+def test_client_sends_branded_user_agent_with_key(mget):
+    mget.return_value = FakeResponse(200, {"trust_score": 70, "withheld": False})
+    TrustClient(api_key="mt_test").get_trust_score(DID)
+    from moltrust_langchain import __version__
+    h = mget.call_args.kwargs["headers"]
+    assert h["User-Agent"] == f"moltrust-langchain/{__version__}"
+    assert h["X-API-Key"] == "mt_test"

@@ -10,13 +10,14 @@
 logic / HTTP client) can be imported and unit-tested without langchain present.
 """
 
+__version__ = "0.1.2"
+
 from .exceptions import (
     MolTrustLangChainError,
     AgentNotRegistered,
     TrustCheckFailed,
 )
 
-__version__ = "0.1.1"
 __all__ = [
     "MolTrustMiddleware",
     "MolTrustLangChainError",

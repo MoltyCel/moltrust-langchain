@@ -22,6 +22,7 @@ from typing import Optional
 import requests
 
 from .exceptions import AgentNotRegistered, MolTrustLangChainError
+from . import __version__
 
 DEFAULT_BASE_URL = "https://api.moltrust.ch"
 
@@ -59,7 +60,9 @@ class TrustClient:
             MolTrustLangChainError: on any other HTTP / transport error.
         """
         url = f"{self._base_url}/skill/trust-score/{did}"
-        headers = {"X-API-Key": self._api_key} if self._api_key else {}
+        headers = {"User-Agent": f"moltrust-langchain/{__version__}"}
+        if self._api_key:
+            headers["X-API-Key"] = self._api_key
         try:
             resp = requests.get(url, headers=headers, timeout=self._timeout)
         except requests.RequestException as exc:

@@ -3,6 +3,13 @@
 All notable changes to `moltrust-langchain` are documented here. This project
 follows [Semantic Versioning](https://semver.org/).
 
+## [0.1.2] — 2026-07-01
+
+### Added
+- Branded `User-Agent` header (`moltrust-langchain/<version>`) on every trust-score
+  request, so MolTrust can attribute API traffic to the framework
+  integration. Sent in both keyless (Tier 1) and keyed (Tier 2) modes.
+
 ## [0.1.1] — 2026-07-01
 
 ### Fixed
